@@ -44,15 +44,6 @@
     box-shadow: 0 4px 16px rgba(39,131,222,0.10);
     transform: translateY(-2px);
   }
- /* Pastel color backgrounds for categories */
-.movie-card {
-  background-color: #FFE5C2; /* pastel orange */
-}
-
-.tv-card {
-  background-color: #FFF9C4; /* pastel yellow */
-}
-
   .card:focus { outline: 2px solid #2783DE; outline-offset: 2px; }
   .card-emoji { font-size: 1.4rem; line-height: 1; }
   .card-title { font-size: 14px; font-weight: 600; color: #2C2C2B; line-height: 1.3; }
@@ -200,14 +191,15 @@ const tvShows = [
 function renderGrid(items, containerId, type) {
   const grid = document.getElementById(containerId);
   grid.innerHTML = items.map((item, i) => `
-   <div class="card ${type === 'movies' ? 'movie-card' : 'tv-card'}" tabindex="0"
+    <div class="card" tabindex="0"
       onclick="openModal('${type}', ${i})"
       onkeydown="if(event.key==='Enter')openModal('${type}',${i})">
       <div class="card-emoji">${item.emoji}</div>
       <div class="card-title">${item.title}</div>
       <div class="card-genre">${item.genre}</div>
-</div>
-
+    </div>
+  `).join('');
+}
 
 renderGrid(movies, 'movies-grid', 'movies');
 renderGrid(tvShows, 'tv-grid', 'tv');
